@@ -1,8 +1,9 @@
-
+#include "DatabaseManager.hpp"
 
 
 int main(int argc, char const *argv[])
 {
-    /* code */
+    DatabaseManager manager;
+    manager.runSimulation();
     return 0;
 }

@@ -3,12 +3,14 @@
 
 #include <iostream>
 #include <vector>
-#include "University.hpp"
 
 using namespace std;
 
-class Faculty : public University {
+class Faculty {
 private:
+    int id;
+    string name;
+    string level;
     string department;
     unsigned int numberOfAdvisee;
     vector<int> advisee;
@@ -19,9 +21,18 @@ public:
     ~Faculty();
 
     //Getters
+    int getID() {return id;}
+    string getName() {return name;}
+    string getLevel() {return level;}
     string getDepartment() {return department;}
     int getNumberOfAdvisee() {return numberOfAdvisee;}
     int getAdvisee(int position);
+
+    //Setters
+    void setID(int facultyID) {id = facultyID;}
+    void setName(string facultyName) {name = facultyName;}
+    void setLevel(string facultyLevel) {level = facultyLevel;} 
+    void setDepartment(string facultyDepartment) {department = facultyDepartment;}
 
     void printAdvisee();
     void addAdvisee(int studentID);

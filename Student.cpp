@@ -18,9 +18,9 @@ Student::Student(int idNumber, string studentName, string studentLevel, string s
     advisorId = studentAdvisorID;
 }
 
-void Student::printStudentInformation(){
+// void Student::printStudentInformation(){
     
-}
+// }
 
 bool Student::operator < (const Student &s){
     return (id < s.id);

@@ -2,13 +2,15 @@
 #define _STUDENT_HPP_
 
 #include <iostream>
-#include "University.hpp"
 
 using namespace std;
 
-class Student : public University
+class Student
 {
 private:
+    int id;
+    string name;
+    string level;
     string major;
     double gpa;
     int advisorId;
@@ -16,17 +18,23 @@ private:
 public:
     Student();
     Student(int idNumber, string studentName, string studentLevel, string studentMajor, double studentGPA, int studentAdvisorID);
-    ~Student();
+    
     //getter
+    int getID() {return id;}
+    string getName() {return name;}
+    string getLevel() {return level;}
     string getMajor() {return major;}
     double getGPA() {return gpa;}
     int getAdvisorID() {return advisorId;}
     //setter 
+    void setID(int studentID) {id = studentID;}
+    void setName (string studentName) {name = studentName;}
+    void setLevel(string studentLevel) {level = studentLevel;}
     void setMajor(string studentMajor) {major = studentMajor;}
     void setGPA(double studentGPA) {gpa = studentGPA;}
     void setAdvisorID(int studentAdvisorID) {advisorId = studentAdvisorID;}
 
-    void printStudentInformation();
+    //void printStudentInformation();
 
     bool operator < (const Student &s);
     bool operator > (const Student &s);
@@ -35,14 +43,6 @@ public:
     bool operator != (const Student &s);
     bool operator == (const Student &s);
 };
-
-Student::Student()
-{
-}
-
-Student::~Student()
-{
-}
 
 
 #endif

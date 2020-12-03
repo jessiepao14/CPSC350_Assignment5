@@ -30,12 +30,13 @@ class BinarySearchTree
         BinaryNode<T> *_remove(BinaryNode<T>* nodePtr, T *target, bool &success);
         BinaryNode<T>* deleteNode(BinaryNode<T>* targetNodePtr);
         BinaryNode<T>* findNode(BinaryNode<T>* treePtr, T *target) const;
+        BinaryNode<T>* removeLeftmostNode(BinaryNode<T>* nodePtr, T *successor);
 };
 
 /////////////////////// public function definitions ////////////////////////
 template<class T>
 void BinarySearchTree<T>::printTree(void visit(T *)) {
-    inOrder(rootPtr, visit);
+    _inOrder(visit, rootPtr);
 }
 
 template<class T>
@@ -60,7 +61,7 @@ bool BinarySearchTree<T>::getEntry(T *anEntry, T &returnedItem) const
     BinaryNode<T> *ptr = findNode(this->rootPtr, anEntry);
     if (!ptr)
         return false;
-    returnedItem = *ptr->getItem();
+    returnedItem = *ptr->getData();
     return true;
 }
 
@@ -69,10 +70,10 @@ bool BinarySearchTree<T>::getEntry(T *anEntry, T &returnedItem) const
 template<class T>
 void BinarySearchTree<T>::_inOrder(void visit(T *), BinaryNode<T> *node) {
     if (node != nullptr) {
-        inOrder(visit, node->getLeftPtr());
+        _inOrder(visit, node->getLeftPtr());
         T* item = node->getData();
         visit(item);
-        inOrder(visit, node->getRightPtr());
+        _inOrder(visit, node->getRightPtr());
     }
 }
 
@@ -88,7 +89,7 @@ BinaryNode<T> *BinarySearchTree<T>::_insert(BinaryNode<T> *nodePtr, BinaryNode<T
         if (nodePtr->getLeftPtr() == nullptr)
             nodePtr->setLeftPtr(newNodePtr);
         else
-            _insert(nodePtr->getLeftPtr, newNodePtr);
+            _insert(nodePtr->getLeftPtr(), newNodePtr);
     } else {
         if (nodePtr->getRightPtr() == 0)
             nodePtr->setRightPtr(newNodePtr);
@@ -105,12 +106,12 @@ BinaryNode<T>* BinarySearchTree<T>::_remove(BinaryNode<T>* nodePtr, T *target, b
     }
     T *nodePtrItem = nodePtr->getData();
     T *targetItem = target;
-    if (nodePtrItem > target)          //check if (nodePtr->getItem() > target)
+    if (nodePtrItem > target)          //check if (nodePtr->getData() > target)
         nodePtr->setLeftPtr(_remove(nodePtr->getLeftPtr(), target, success));
-    else if (nodePtrItem < targetItem)    //(nodePtr->getItem() < target)
+    else if (nodePtrItem < targetItem)    //(nodePtr->getData() < target)
         nodePtr->setRightPtr(_remove(nodePtr->getRightPtr(), target, success));
     else { //if the node matches target
-        target = nodePtr->getItem();
+        target = nodePtr->getData();
         nodePtr = deleteNode(nodePtr);
         success = true;
     }
@@ -119,31 +120,24 @@ BinaryNode<T>* BinarySearchTree<T>::_remove(BinaryNode<T>* nodePtr, T *target, b
 
 template<class T>
 BinaryNode<T>* BinarySearchTree<T>::deleteNode(BinaryNode<T>* nodePtr) {
-    if (nodePtr->isLeaf())
-    {
+    if (nodePtr->isLeaf()) {
         delete nodePtr;
         nodePtr = 0;
         return nodePtr;
-    }
-    else if (nodePtr->getLeftPtr() == 0)
-    {
+    } else if (nodePtr->getLeftPtr() == 0) {
         BinaryNode<T>* nodeToConnectPtr = nodePtr->getRightPtr();
         delete nodePtr;
         nodePtr = 0;
         return nodeToConnectPtr;
-    }
-    else if (nodePtr->getRightPtr() == 0)
-    {
-        BinaryNode<ItemType>* nodeToConnectPtr = nodePtr->getLeftPtr();
+    } else if (nodePtr->getRightPtr() == 0) {
+        BinaryNode<T>* nodeToConnectPtr = nodePtr->getLeftPtr();
         delete nodePtr;
         nodePtr = 0;
         return nodeToConnectPtr;
-    }
-    else
-    {
-        T *newNodeValue = new StatePark();
+    } else {
+        T *newNodeValue = nullptr;
         nodePtr->setRightPtr(removeLeftmostNode(nodePtr->getRightPtr(), newNodeValue));
-        nodePtr->setItem(newNodeValue);
+        nodePtr->setData(newNodeValue);
         return nodePtr;
     }
 }
@@ -151,7 +145,7 @@ BinaryNode<T>* BinarySearchTree<T>::deleteNode(BinaryNode<T>* nodePtr) {
 template<class T>
 BinaryNode<T>* BinarySearchTree<T>::findNode(BinaryNode<T>* nodePtr, T *target) const
 {
-    T *nodeItem = nodePtr->getItem();
+    T *nodeItem = nodePtr->getData();
     T *targetItem = target;
     // if (compare(nodeItem, targetItem) == 0)//(nodePtr->getItem() == target)
     if (nodeItem == targetItem)
@@ -172,5 +166,15 @@ BinaryNode<T>* BinarySearchTree<T>::findNode(BinaryNode<T>* nodePtr, T *target) 
     }
 }
 
+template<class T>
+BinaryNode<T>* BinarySearchTree<T>::removeLeftmostNode(BinaryNode<T>* nodePtr, T *successor) {
+    if (nodePtr->getLeftPtr() == 0) {
+        successor = nodePtr->getData();
+        return deleteNode(nodePtr);
+    } else {
+        nodePtr->setLeftPtr(removeLeftmostNode(nodePtr->getLeftPtr(), successor));
+        return nodePtr;
+    }
+}
 
 #endif

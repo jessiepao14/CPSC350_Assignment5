@@ -1,4 +1,3 @@
-#include "main.cpp"
 #include "DatabaseManager.hpp"
 
 void printStudentInfo(Student *student);
@@ -34,15 +33,16 @@ void DatabaseManager::runSimulation() {
             deleteStudent();
         } else if(choice == 9) {
             addFaculty(); 
-        } else if(choice == 10) {
-            deleteFaculty();
-        } else if (choice == 11) {
-            changeAdvisee();
-        } else if (choice == 12) {
-            deleteAdvisee();
-        } else if (choice == 13) {
-            rollback();
-        }
+        } 
+        // else if(choice == 10) {
+        //     deleteFaculty();
+        // } else if (choice == 11) {
+        //     changeAdvisee();
+        // } else if (choice == 12) {
+        //     deleteAdvisee();
+        // } else if (choice == 13) {
+        //     rollback();
+        // }
     }
 }
 
@@ -200,7 +200,7 @@ void DatabaseManager::addFaculty() {
 
     string temp;
 
-    cout << "Please input the facultt's ID: " << endl;
+    cout << "Please input the faculty's ID: " << endl;
     cin >> temp;
     facultyID = validateInt(temp);
     cout << "Please input the faculty's name: " << endl;
@@ -276,7 +276,7 @@ void DatabaseManager::printFacultyHeader() {
 }
 
 void printStudentInfo(Student *student) {
-    cout << left << setw(10) << student->getId() << " "
+    cout << left << setw(10) << student->getID() << " "
                  << setw(25) << student->getName() << " "
                  << setw(11) << student->getLevel() << " "
                  << setw(25) << student->getMajor() << " "
@@ -285,7 +285,7 @@ void printStudentInfo(Student *student) {
 }
 
 void printFacultyInfo(Faculty *faculty) {
-    cout << left << setw(10) << faculty->getId() << " "
+    cout << left << setw(10) << faculty->getID() << " "
                  << setw(25) << faculty->getName() << " "
                  << setw(11) << faculty->getLevel() << " "
                  << setw(25) << faculty->getDepartment() << " "
@@ -301,7 +301,7 @@ void DatabaseManager::menu() {
     cout << "4 - Find and display faculty information given the faculty id" << endl;
     cout << "5 - Given a student’s id, print the name and info of their faculty advisor" << endl;
     cout << "6 - Given a faculty id, print ALL the names and info of his/her advisees." << endl;
-    cout << "7 - Delete a student given the id" << endl;
+    cout << "7 - Add a new student" << endl;
     cout << "8 – Delete a student given the id" << endl;
     cout << "9 – Add a new faculty member" << endl;
     cout << "10 – Delete a faculty member given the id." << endl;

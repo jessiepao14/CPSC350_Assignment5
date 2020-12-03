@@ -4,6 +4,7 @@
 #include <iostream>
 #include <string>
 #include <fstream>
+#include <iomanip> 
 
 #include "BinarySearchTree.hpp"
 #include "Faculty.hpp"
@@ -23,9 +24,6 @@ private:
     // implement stack in GenStrcutures.hpp
 
 public:
-    DatabaseManager();
-    ~DatabaseManager();
-
     void runSimulation();
 
     void menu();
@@ -41,10 +39,10 @@ public:
     void addFaculty();             //9
 
     // Do these sections
-    void deleteFaculty();    // delete the faculty member and redistribute the advisees
-    void changeAdvisee();   // search for student and set the advisor to the facultyID
-    void deleteAdvisee();   // search for facult and delete the student from advisee list
-    void rollback();        // use Stack to undo the last delete
+    // void deleteFaculty();    // delete the faculty member and redistribute the advisees
+    // void changeAdvisee();   // search for student and set the advisor to the facultyID
+    // void deleteAdvisee();   // search for facult and delete the student from advisee list
+    // void rollback();        // use Stack to undo the last delete
 
     void printStudentHeader();
     void printFacultyHeader();

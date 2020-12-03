@@ -1,5 +1,12 @@
 #include "Faculty.hpp"
 
+Faculty::Faculty() {
+    id = 0;
+    name = "";
+    level = "";
+    department = "";
+    numberOfAdvisee = 0;
+}
 
 Faculty::Faculty(int idNumber, string facultyName, string facultyLevel, string facultyDepartment){
     id = idNumber;
