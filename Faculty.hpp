@@ -2,6 +2,7 @@
 #define _FACULTY_HPP_
 
 #include <iostream>
+#include <vector>
 #include "University.hpp"
 
 using namespace std;
@@ -10,8 +11,7 @@ class Faculty : public University {
 private:
     string department;
     unsigned int numberOfAdvisee;
-    unsigned int maxAdvisee;
-    int *advisee;
+    vector<int> advisee;
 
 public:
     Faculty();
@@ -21,8 +21,9 @@ public:
     //Getters
     string getDepartment() {return department;}
     int getNumberOfAdvisee() {return numberOfAdvisee;}
-    int getMaxAdvisee() {return maxAdvisee;}
+    int getAdvisee(int position);
 
+    void printAdvisee();
     void addAdvisee(int studentID);
     void removeAdvisee(int studentID);
 
