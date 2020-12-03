@@ -46,17 +46,18 @@ void DatabaseManager::runSimulation() {
     }
 }
 
-
+//#1 for the assignment
 void DatabaseManager::printAllStudents() {
     printStudentHeader();
     studentTree.printTree(printStudentInfo);
 }
 
+//#2 for the assignment
 void DatabaseManager::printAllFaculty() {
     printFacultyHeader();
     facultyTree.printTree(printFacultyInfo);
 }
-
+//#3 for the assignment
 void DatabaseManager::findStudent() {
     int studentID = 0;
     string temp;
@@ -123,7 +124,7 @@ void DatabaseManager::givenStudentAdvisor() {
         cout << "Sorry there is no student with that ID" << endl;
     }
 }
-
+// #4 requirment for the assignment
 void DatabaseManager::givenFacultyAdvisee() {
     int facultyID;
     string temp;
