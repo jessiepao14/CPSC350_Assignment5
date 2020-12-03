@@ -76,7 +76,7 @@ void DatabaseManager::findStudent() {
         cout << "Sorry there is no student with that ID" << endl;
     }
 }
-
+// #6 requirment for the assignment
 void DatabaseManager::findFaculty() {
     int facultyID;
     string temp;
@@ -96,7 +96,7 @@ void DatabaseManager::findFaculty() {
         cout << "Sorry there is no faculty with that ID" << endl;
     }
 }
-
+// #5 requirment for the assignment
 void DatabaseManager::givenStudentAdvisor() {
     int studentID;
     string temp;
@@ -127,7 +127,7 @@ void DatabaseManager::givenStudentAdvisor() {
 void DatabaseManager::givenFacultyAdvisee() {
     int facultyID;
     string temp;
-    cout << "Please enter the faculyt ID to find information on their advisees: " << endl;
+    cout << "Please enter the faculty ID to find information on their advisees: " << endl;
     cin >> temp;
     facultyID = validateInt(temp);
 
@@ -157,7 +157,7 @@ void DatabaseManager::printAdvisee(Faculty mentor){
         }
     }
 }
-
+// #7 requirment for the assignment
 void DatabaseManager::addStudent() {
     int studentID;
     string studentName;
@@ -191,7 +191,7 @@ void DatabaseManager::addStudent() {
     Student *newStudent = new Student(studentID, studentName, studentLevel, studentMajor, studentGPA, studentAdvisorID);
     studentTree.insert(newStudent);
 }
-
+// #9 requirment for the assignment
 void DatabaseManager::addFaculty() {
     int facultyID;
     string facultyName;
@@ -213,7 +213,7 @@ void DatabaseManager::addFaculty() {
     Faculty *newFaculty = new Faculty(facultyID, facultyName, facultyLevel, department);
     facultyTree.insert(newFaculty);
 }
-
+// #8 requirment for the assignment
 void DatabaseManager::deleteStudent() {
     int facultyID = 0;
     int studentID = 0;
