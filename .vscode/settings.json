@@ -11,6 +11,15 @@
         "deque": "cpp",
         "list": "cpp",
         "unordered_map": "cpp",
-        "vector": "cpp"
+        "vector": "cpp",
+        "istream": "cpp",
+        "__config": "cpp",
+        "__nullptr": "cpp",
+        "__bit_reference": "cpp",
+        "__string": "cpp",
+        "algorithm": "cpp",
+        "string_view": "cpp",
+        "__node_handle": "cpp",
+        "stack": "cpp"
     }
 }

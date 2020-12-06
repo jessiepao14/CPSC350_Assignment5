@@ -48,7 +48,9 @@ class DoublyLinkList {
 
         T removeFront(); // Remove the first node
         void insertBack(T data); // insert node at the back
+        void insertFront(T data); // insert node at the front
         T getFront(); // return the value of the first node
+        T getPosition(int pos);
 
         bool isEmpty(); // check is the list is empty
         int getSize(); //return the size of the list
@@ -107,7 +109,21 @@ void DoublyLinkList<T>::insertBack(T d) {
         back->next = node;
     }
     back = node;
-    //cout << "\tInsert Back: " << back->data << endl;
+    ++size;
+}
+
+template <class T>
+void DoublyLinkList<T>::insertFront(T d) {
+    ListNode<T> *node = new ListNode<T>(d);
+
+
+    if(size == 0) {
+        back = node;
+    } else {
+        node->next = front;
+        front->prev = node;
+    }
+    front = node;
     ++size;
 }
 
@@ -124,6 +140,15 @@ bool DoublyLinkList<T>::isEmpty() {
 template <class T>
 int DoublyLinkList<T>::getSize() {
     return size;
+}
+
+template <class T>
+T DoublyLinkList<T>::getPosition(int pos) {
+    ListNode<T> *current = front;
+    for (int i = 0; i < pos; ++i) {
+        current = current->next;
+    }
+    return current->data;
 }
 
 template <class T>
@@ -201,6 +226,81 @@ int GenQueue<T>::getSize() {
 template <class T>
 void GenQueue<T>::printQueue() {
     myQueue.printList();
+}
+
+
+template <class T>
+class GenStack {
+    public:
+        GenStack();
+        GenStack(int size);
+        ~GenStack();
+
+        void push(T item);
+        T pop();
+        T peek();
+
+        bool isEmpty();  
+        int  getSize(); 
+        void printStack(); 
+        void clear();
+
+        int stackSize;
+        DoublyLinkList<T> myStack;
+};
+
+template <class T>
+GenStack<T>::GenStack() {
+    stackSize = 0;
+    DoublyLinkList<T> myStack = DoublyLinkList<T>();
+}
+
+template <class T>
+GenStack<T>::GenStack(int size) {
+    stackSize = size;
+    DoublyLinkList<T> myStack = DoublyLinkList<T>();
+}
+
+template <class T>
+GenStack<T>::~GenStack() {
+    // doublyly linked list destructor will take care of this
+}
+
+template <class T>
+void GenStack<T>::push(T item) {
+    myStack.insertFront(item);
+}
+
+template <class T>
+T GenStack<T>::pop() {
+    return myStack.removeFront();
+}
+
+template <class T>
+T GenStack<T>::peek() {
+    return myStack.getFront();
+}
+
+template <class T>
+bool GenStack<T>::isEmpty(){
+    return myStack.isEmpty();
+}
+
+template <class T>
+int GenStack<T>::getSize() {
+    return myStack.getSize();
+}
+
+template <class T>
+void GenStack<T>::printStack() {
+    myStack.printList();
+}
+
+template <class T>
+void GenStack<T>::clear() {
+    while(!myStack.isEmpty()) {
+        myStack.removeFront();
+    }
 }
 
 #endif 

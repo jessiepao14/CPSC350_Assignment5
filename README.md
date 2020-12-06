@@ -16,7 +16,9 @@ a. https://github.com/jessiepao14/State-Park    // My old project
 b. https://www.geeksforgeeks.org/vector-erase-and-clear-in-cpp/
 c. http://www.cplusplus.com/reference/string/string/length/
 d. http://www.cplusplus.com/forum/beginner/48769/
-e. 
+e. https://docs.microsoft.com/en-us/cpp/standard-library/overloading-the-output-operator-for-your-own-classes?view=msvc-160
+f. https://www.learncpp.com/cpp-tutorial/96-overloading-the-comparison-operators/
+g. 
 
 5. INSTRUCTIONS FOR RUNNING THE ASSIGNMENT
 a. ***Answer goes here.***
